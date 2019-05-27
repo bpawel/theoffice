@@ -6,6 +6,7 @@ import com.theoffice.entities.Account;
 import com.theoffice.exceptions.accounts.AccountConflictException;
 import com.theoffice.exceptions.accounts.AccountNotFoundException;
 import com.theoffice.repository.AccountRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -25,13 +26,13 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
   private AccountRepository accountRepository;
 
+  @Autowired
   public AuthenticationServiceImpl(AccountRepository accountRepository) {
     this.accountRepository = accountRepository;
   }
 
-
   @Override
-  public UserDetails loadUsersByUsername(String username) throws UsernameNotFoundException {
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     Optional<Account> account = accountRepository.findByUsername(username);
     if (account.isPresent()) {
       GrantedAuthority authority;
@@ -80,10 +81,5 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     } else {
       throw new AccountConflictException();
     }
-  }
-
-  @Override
-  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    return null;
   }
 }
