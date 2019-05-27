@@ -25,7 +25,6 @@ public class AccountServiceImpl implements AccountService {
   private AuthenticationService authenticationService;
   private DepartmentRepository departmentRepository;
 
-  @Autowired
   public AccountServiceImpl(AccountRepository accountRepository, AuthenticationService authenticationService, DepartmentRepository departmentRepository) {
     this.accountRepository = accountRepository;
     this.authenticationService = authenticationService;

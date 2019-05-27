@@ -1,4 +1,4 @@
-package the.office.services.department;
+package com.theoffice.services.department;
 
 import com.theoffice.entities.Department;
 
